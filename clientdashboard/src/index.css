@@ -1,0 +1,16 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  /* bottom footer height = 21px  */
+  margin: 0;
+  min-height: 100%;
+  font-family: 'Rubik', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+	line-height: 1.2;
+}
