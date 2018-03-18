@@ -1,12 +1,20 @@
 export const transformChartData = (salesData) => {
   const barChartData = [];
   const areaChartData = [];
-  salesData.forEach((data) => {
-    barChartData.push([data.time, data.line]);
-    areaChartData.push([data.time, data.area]);
-  });
+  const donutChartData = {
+    West: 0,
+    South: 0,
+    Northeast: 0,
+    Midwest: 0,
+  };
 
-  return [areaChartData, barChartData];
+  salesData.forEach((data) => {
+    barChartData.push([data.time * 1, data.line * 1]);
+    areaChartData.push([data.time * 1, data.area * 1]);
+    donutChartData[data.region] += data.area * 1;
+  });
+  console.log(donutChartData);
+  return [areaChartData, barChartData, Object.entries(donutChartData)];
 };
 
 export const transformMapData = (mapData) => {
@@ -18,9 +26,9 @@ export const transformMapData = (mapData) => {
       'hc-a2': abbr,
       name: state,
       region,
-      x,
-      y,
-      value,
+      x: parseInt(x, 10),
+      y: parseInt(y, 10),
+      value: parseInt(value, 10),
     };
 
     mapChartData.push(dataSetup);

@@ -2387,7 +2387,7 @@ eslint-plugin-import@2.8.0:
     minimatch "^3.0.3"
     read-pkg-up "^2.0.0"
 
-eslint-plugin-jsx-a11y@^6.0.3:
+eslint-plugin-jsx-a11y@^6.0.2:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/eslint-plugin-jsx-a11y/-/eslint-plugin-jsx-a11y-6.0.3.tgz#54583d1ae442483162e040e13cc31865465100e5"
   dependencies:
@@ -3274,6 +3274,14 @@ hawk@~6.0.2:
 he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
+
+highcharts-more@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/highcharts-more/-/highcharts-more-0.1.7.tgz#43cd6274cccba443166c94d4536d904bbabf9c77"
+
+highcharts-tilemap@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/highcharts-tilemap/-/highcharts-tilemap-0.1.7.tgz#acea9de15c01e246f54711998d477adbdd5ef0f9"
 
 highcharts@^6.0.4, highcharts@^6.0.6:
   version "6.0.7"
@@ -4701,9 +4709,13 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
 
-nan@^2.3.0, nan@^2.3.2:
+nan@^2.3.0:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.9.2.tgz#f564d75f5f8f36a6d9456cca7a6c4fe488ab7866"
+
+nan@^2.3.2:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
 
 nanomatch@^1.2.9:
   version "1.2.9"
@@ -5616,7 +5628,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
