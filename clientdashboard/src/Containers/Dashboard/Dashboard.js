@@ -17,11 +17,12 @@ class Dashboard extends Component {
     donutData: [],
     salesData: [],
     baseUrl: 'http://localhost:8080/',
+    view: 'All',
   }
 
   componentDidMount() {
     this.getMapsData();
-    this.getSalesData();
+    this.getSalesData(this.state.view);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -34,8 +35,12 @@ class Dashboard extends Component {
     return true;
   }
 
-  getSalesData = async () => {
-    const url = `${this.state.baseUrl}sales`;
+  getSalesData = async (viewRegion) => {
+    let url = `${this.state.baseUrl}sales`;
+    if (viewRegion !== 'All') {
+      url = `${this.state.baseUrl}sales/region/${viewRegion}`;
+    }
+
     const request = await axios.get(url)
       .catch(err => console.log(err, 'error getting data'));
 
@@ -50,8 +55,13 @@ class Dashboard extends Component {
     const request = await axios.get(url)
       .catch(err => console.log(err, 'error getting data'));
 
-    const mapsData = utility.transformMapData(request.data);
+    const mapsData = await utility.transformMapData(request.data);
     this.setState({ mapsData });
+  }
+
+  updateView = (regionName) => {
+    this.getSalesData(regionName);
+    this.setState({ view: regionName });
   }
 
   render() {
@@ -73,6 +83,8 @@ class Dashboard extends Component {
                 <DashboardSummary
                   salesData={this.state.salesData}
                   areaData={this.state.areaData}
+                  changeView={regionName => this.updateView(regionName)}
+                  view={this.state.view}
                 />
               </Grid.Column>
             </Grid.Row>

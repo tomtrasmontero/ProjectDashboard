@@ -77,14 +77,17 @@ class MapChart extends Component {
 
     return (
       <Segment>
-        <ReactHighmaps config={config} ref={(c) => { this.chart = c; }} />;
+        <ReactHighmaps config={config} ref={(c) => { this.chart = c; }} />
       </Segment>
     );
   }
 }
 
 MapChart.propTypes = {
-  mapsData: PropTypes.arrayOf(PropTypes.array),
+  mapsData: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]),
 };
 
 MapChart.defaultProps = {

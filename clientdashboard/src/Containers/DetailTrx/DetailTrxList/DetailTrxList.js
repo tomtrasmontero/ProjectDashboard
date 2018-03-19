@@ -102,12 +102,12 @@ class DetailTrxList extends Component {
         <Table celled selectable compact>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Transaction#</Table.HeaderCell>
-              <Table.HeaderCell>Date</Table.HeaderCell>
-              <Table.HeaderCell>Region</Table.HeaderCell>
-              <Table.HeaderCell>Amount</Table.HeaderCell>
+              <Table.HeaderCell width={2}>Transaction#</Table.HeaderCell>
+              <Table.HeaderCell width={3}>Date</Table.HeaderCell>
+              <Table.HeaderCell width={2}>Region</Table.HeaderCell>
+              <Table.HeaderCell width={2}>Amount</Table.HeaderCell>
               <Table.HeaderCell>Notes</Table.HeaderCell>
-              <Table.HeaderCell>Edit</Table.HeaderCell>
+              <Table.HeaderCell width={1}>Edit</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 

@@ -10,18 +10,20 @@ class dashboardSummary extends Component {
       { key: 'West', value: 'West', text: 'West' },
       { key: 'South', value: 'South', text: 'South' },
       { key: 'Northeast', value: 'Northeast', text: 'Northeast' },
-      { key: 'MidWest', value: 'MidWest', text: 'MidWest' },
+      { key: 'Midwest', value: 'Midwest', text: 'Midwest' },
     ],
-    optionSelected: 'All',
   }
 
-  handleChange = (e, data) => this.setState({ optionSelected: data.value });
+  handleChange = (e, data) => {
+    this.props.changeView(data.value);
+  }
+
   render() {
     return (
       <Segment raised>
         <Header block textAlign="center" inverted color="grey">
           <Icon name="filter" />
-          View: {this.state.optionSelected}
+          View: {this.props.view}
         </Header>
         <Select
           placeholder="All Sales Team"
@@ -41,6 +43,8 @@ class dashboardSummary extends Component {
 dashboardSummary.propTypes = {
   salesData: PropTypes.arrayOf(PropTypes.object),
   areaData: PropTypes.arrayOf(PropTypes.array),
+  view: PropTypes.string.isRequired,
+  changeView: PropTypes.func.isRequired,
 };
 
 dashboardSummary.defaultProps = {

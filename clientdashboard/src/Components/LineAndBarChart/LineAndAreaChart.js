@@ -8,6 +8,25 @@ class LineAndBarChart extends Component {
     this.chart.Highcharts.setOptions({ lang: { thousandsSep: ',' } });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.areaData !== this.props.areaData &&
+    nextProps.lineData.length > 0) {
+      console.log('updated');
+      this.chart.chart.series[0].redraw();
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    let check = false;
+    if (nextProps.lineData === this.props.lineData) {
+      check = true;
+    } else if (nextProps.areaData !== this.props.areaData) {
+      check = true;
+    }
+
+    return check;
+  }
+
   render() {
     const config = {
       rangeSelector: {
@@ -27,7 +46,7 @@ class LineAndBarChart extends Component {
           x: -3,
         },
         title: {
-          text: 'Price',
+          text: 'Sales',
         },
         height: '60%',
         lineWidth: 2,
@@ -52,6 +71,7 @@ class LineAndBarChart extends Component {
       },
       series: [{
         name: 'Sales',
+        type: 'area',
         data: this.props.lineData,
         tooltip: {
           valueDecimals: 0,
@@ -79,9 +99,11 @@ class LineAndBarChart extends Component {
       },
     };
 
+    const chart = <ReactHighstock config={config} ref={(c) => { this.chart = c; }} />;
+
     return (
       <Container as={Segment} id="container" >
-        <ReactHighstock config={config} ref={(c) => { this.chart = c; }} />
+        {chart}
       </Container>
     );
   }
