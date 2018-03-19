@@ -17,13 +17,13 @@ const totalSnapShot = (props) => {
     <Grid centered stretched celled="internally" className={classes.Total}>
       <Grid.Row stretched>
         <Grid.Column computer={8} textAlign="center" verticalAlign="middle">
-          <Statistic text>
+          <Statistic size="small">
             <Statistic.Value>{totalSales}M</Statistic.Value>
             <Statistic.Label>Total Sales</Statistic.Label>
           </Statistic>
         </Grid.Column>
         <Grid.Column computer={8} textAlign="center" verticalAlign="middle">
-          <Statistic>
+          <Statistic size="small">
             <Statistic.Value>{totalSales}M</Statistic.Value>
             <Statistic.Label>Total Volume</Statistic.Label>
           </Statistic>
@@ -31,13 +31,13 @@ const totalSnapShot = (props) => {
       </Grid.Row>
       <Grid.Row stretched>
         <Grid.Column computer={8} textAlign="center" verticalAlign="middle">
-          <Statistic>
-            <Statistic.Value>{totalSales * 0.20}M</Statistic.Value>
+          <Statistic size="small">
+            <Statistic.Value>{Math.ceil(totalSales * 0.20)}M</Statistic.Value>
             <Statistic.Label>Net Income</Statistic.Label>
           </Statistic>
         </Grid.Column>
         <Grid.Column computer={8} textAlign="center" verticalAlign="middle">
-          <Statistic>
+          <Statistic size="small">
             <Statistic.Value>15.6%</Statistic.Value>
             <Statistic.Label>Gowth v. PY</Statistic.Label>
           </Statistic>

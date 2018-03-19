@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Container, Grid, Header, Segment } from 'semantic-ui-react';
-import Aux from '../hoc/Aux/Aux';
-import MenuBar from '../Components/MenuBar/MenuBar';
-import LineAndBarChart from '../Components/LineAndBarChart/LineAndAreaChart';
-import DonutChart from '../Components/DonutChart/DonutChart';
-import MapsChart from '../Components/MapChart/MapChart';
-import DashboardSummary from '../Components/DashboardSummary/DashboardSummary';
-import * as utility from '../utilities/transformData';
+import Aux from '../../hoc/Aux/Aux';
+import LineAndBarChart from '../../Components/LineAndBarChart/LineAndAreaChart';
+import DonutChart from '../../Components/DonutChart/DonutChart';
+import MapsChart from '../../Components/MapChart/MapChart';
+import DashboardSummary from '../../Components/DashboardSummary/DashboardSummary';
+import * as utility from '../../utilities/transformData';
 import classes from './Dashboard.scss';
 
 class Dashboard extends Component {
@@ -58,9 +57,8 @@ class Dashboard extends Component {
   render() {
     return (
       <Aux>
-        <MenuBar />
         <Container className={classes.Dashboard}>
-          <Grid divided stackable color="grey">
+          <Grid stackable color="grey">
             <Grid.Row>
               <Grid.Column stretched largeScreen={11} mobile={16}>
                 <Segment raised>

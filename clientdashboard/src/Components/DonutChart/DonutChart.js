@@ -31,7 +31,7 @@ class DonutChart extends Component {
       },
       plotOptions: {
         pie: {
-          size: '140%',
+          size: '100%',
           dataLabels: {
             enabled: true,
             distance: -50,
@@ -40,15 +40,11 @@ class DonutChart extends Component {
               color: 'white',
             },
           },
-          startAngle: -90,
-          endAngle: 90,
-          center: ['50%', '75%'],
         },
       },
       series: [{
         type: 'pie',
         name: 'Sales',
-        innerSize: '50%',
         allowPointSelect: true,
         data: [...this.props.donutData],
         dataLabels: {
@@ -58,6 +54,21 @@ class DonutChart extends Component {
         yAxis: 1,
         showInLegend: true,
       }],
+      responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {
+            navigator: {
+              enabled: false,
+            },
+            dataLabels: {
+              enabled: false,
+            },
+          },
+        }],
+      },
     };
 
     return (

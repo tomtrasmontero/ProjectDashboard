@@ -8,6 +8,7 @@ body {
   /* bottom footer height = 21px  */
   margin: 0;
   min-height: 100%;
+  background-color: #1b1c1d40 !important;
   font-family: 'Rubik', sans-serif;
 }
 

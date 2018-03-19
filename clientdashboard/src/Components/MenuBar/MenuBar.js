@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 class MenuBar extends Component {
   state = { activeItem: 'dashboard' };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  componentDidMount() {
+    this.checkState();
+  }
+
+  checkState() {
+    const activeAddress = this.props.history.location.pathname.split('/')[1];
+    this.setState({ activeItem: activeAddress });
+  }
+
+  handleItemClick = (e, { name }) => {
+    this.props.history.push(name);
+    this.setState({ activeItem: name });
+  }
 
   render() {
     const { activeItem } = this.state;
@@ -20,4 +34,11 @@ class MenuBar extends Component {
   }
 }
 
-export default MenuBar;
+MenuBar.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+    location: PropTypes.shape().isRequired,
+  }).isRequired,
+};
+
+export default withRouter(MenuBar);
