@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container, Segment } from 'semantic-ui-react';
 import ReactHighstock from 'react-highcharts/ReactHighstock';
 import PropTypes from 'prop-types';
 
@@ -15,7 +15,7 @@ class LineAndBarChart extends Component {
       },
       credits: false,
       title: {
-        text: 'Sales History',
+        text: '',
       },
       loading: {
         hideDuration: 1000,
@@ -80,7 +80,7 @@ class LineAndBarChart extends Component {
     };
 
     return (
-      <Container id="container" >
+      <Container as={Segment} id="container" >
         <ReactHighstock config={config} ref={(c) => { this.chart = c; }} />
       </Container>
     );

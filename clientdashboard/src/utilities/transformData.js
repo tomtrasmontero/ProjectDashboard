@@ -13,26 +13,42 @@ export const transformChartData = (salesData) => {
     areaChartData.push([data.time * 1, data.area * 1]);
     donutChartData[data.region] += data.area * 1;
   });
-  console.log(donutChartData);
   return [areaChartData, barChartData, Object.entries(donutChartData)];
 };
 
 export const transformMapData = (mapData) => {
   const mapChartData = [];
   mapData.forEach(({
-    abbr, state, region, x, y, value,
+    abbr, value,
   }) => {
-    const dataSetup = {
-      'hc-a2': abbr,
-      name: state,
-      region,
-      x: parseInt(x, 10),
-      y: parseInt(y, 10),
-      value: parseInt(value, 10),
-    };
-
-    mapChartData.push(dataSetup);
+    mapChartData.push([`us-${abbr.toLowerCase()}`, parseInt(value, 10)]);
   });
 
   return mapChartData;
+};
+
+
+export const numFormat = (number) => {
+  let isNegative = '';
+  let dec = '';
+  let numToStr = number.toString().split('.');
+  let formatNum = '';
+  if (number < 0) {
+    isNegative = '-';
+    numToStr = number.toString().substr(1).split('.');
+  }
+  if (numToStr[1]) {
+    dec = `.${numToStr[1].toString()}`;
+  }
+
+  const int = numToStr[0];
+
+  for (let i = 0; i < int.length; i += 1) {
+    let substring = int[int.length - i - 1];
+    if ((i + 1) % 3 === 0 && i > 0 && i !== int.length - 1) {
+      substring = `,${substring}`;
+    }
+    formatNum = substring + formatNum;
+  }
+  return [isNegative, formatNum, dec].join('');
 };

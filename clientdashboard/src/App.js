@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Dashboard from './Containers/Dashboard';
+import classes from './App.css';
 
 class App extends Component {
   componentWillMount() {
-    console.log('data');
+    console.log('');
   }
   render() {
     return (
-      <div className="App">
+      <div className={classes.App}>
         <Dashboard />
       </div>
     );

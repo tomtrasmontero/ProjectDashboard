@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactHighchart from 'react-highcharts';
+import { Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 class DonutChart extends Component {
@@ -8,9 +9,9 @@ class DonutChart extends Component {
   }
 
   render() {
-    const donutConfig = {
+    const config = {
       title: {
-        text: 'Regional Breakdown',
+        text: '',
         align: 'center',
         verticalAlign: 'middle',
         y: -120,
@@ -30,10 +31,10 @@ class DonutChart extends Component {
       },
       plotOptions: {
         pie: {
+          size: '140%',
           dataLabels: {
             enabled: true,
             distance: -50,
-            // format: '<b>{series.name}</b><br/><b>{point.percentage:.1f}%</b>',
             style: {
               fontWeight: 'bold',
               color: 'white',
@@ -49,34 +50,20 @@ class DonutChart extends Component {
         name: 'Sales',
         innerSize: '50%',
         allowPointSelect: true,
-        data: [...this.props.donutData, {
-          name: 'Proprietary or Undetectable',
-          y: 0.2,
-          dataLabels: {
-            enabled: false,
-          },
-        }],
+        data: [...this.props.donutData],
+        dataLabels: {
+          enabled: true,
+          format: '<b>$ {point.y:,1f}</b><br/><b>{point.percentage:.1f}%</b>',
+        },
         yAxis: 1,
+        showInLegend: true,
       }],
-      responsive: {
-        rules: [{
-          condition: {
-            maxWidth: 500,
-          },
-          chartOptions: {
-            navigator: {
-              enabled: false,
-            },
-            dataLabels: {
-              enabled: false,
-            },
-          },
-        }],
-      },
     };
 
     return (
-      <ReactHighchart config={donutConfig} ref={(c) => { this.chart = c; }} />
+      <Segment>
+        <ReactHighchart config={config} ref={(c) => { this.chart = c; }} />
+      </Segment>
     );
   }
 }

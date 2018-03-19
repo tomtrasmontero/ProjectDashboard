@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Grid } from 'semantic-ui-react';
+import { Container, Grid, Header, Segment } from 'semantic-ui-react';
 import Aux from '../hoc/Aux/Aux';
 import MenuBar from '../Components/MenuBar/MenuBar';
 import LineAndBarChart from '../Components/LineAndBarChart/LineAndAreaChart';
 import DonutChart from '../Components/DonutChart/DonutChart';
 import MapsChart from '../Components/MapChart/MapChart';
+import DashboardSummary from '../Components/DashboardSummary/DashboardSummary';
 import * as utility from '../utilities/transformData';
+import classes from './Dashboard.scss';
 
 class Dashboard extends Component {
   state = {
@@ -57,37 +59,55 @@ class Dashboard extends Component {
     return (
       <Aux>
         <MenuBar />
-        <Container>
-          <Grid divided stackable>
+        <Container className={classes.Dashboard}>
+          <Grid divided stackable color="grey">
             <Grid.Row>
-              <Grid.Column stretched largeScreen={16} mobile={16}>
-                <LineAndBarChart
-                  lineData={this.state.lineData}
+              <Grid.Column stretched largeScreen={11} mobile={16}>
+                <Segment raised>
+                  <Header block textAlign="center" inverted color="grey">Sales History</Header>
+                  <LineAndBarChart
+                    lineData={this.state.lineData}
+                    areaData={this.state.areaData}
+                  />
+                </Segment>
+              </Grid.Column>
+              <Grid.Column stretched largeScreen={5} mobile={16}>
+                <DashboardSummary
+                  salesData={this.state.salesData}
                   areaData={this.state.areaData}
                 />
               </Grid.Column>
-              <Grid.Column stretched largeScreen={16} mobile={16}>
-                <Grid.Row divided>
-                  <Grid.Row>
-                    <p>Data</p>
-                  </Grid.Row>
-                  <Grid.Row>
-                    <MapsChart
-                      mapData={this.state.mapsData}
-                    />
-                  </Grid.Row>
-                </Grid.Row>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column stretched largeScreen={6} mobile={16}>
+                <Segment raised>
+                  <Header
+                    block
+                    textAlign="center"
+                    inverted
+                    color="grey"
+                  > Sales by Regional Team
+                  </Header>
+                  <DonutChart
+                    donutData={this.state.donutData}
+                  />
+                </Segment>
+              </Grid.Column>
+              <Grid.Column stretched largeScreen={10} mobile={16}>
+                <Segment raised>
+                  <Header
+                    block
+                    textAlign="center"
+                    inverted
+                    color="grey"
+                  >US Sales Distribution
+                  </Header>
+                  <MapsChart
+                    mapsData={this.state.mapsData}
+                  />
+                </Segment>
               </Grid.Column>
             </Grid.Row>
-            <Grid.Column stretched largeScreen={4} mobile={16}>
-              <p>{this.state.mapsData.length}</p>
-              <p>{this.state.salesData.length}</p>
-            </Grid.Column>
-            <Grid.Column stretched largeScreen={12} mobile={16}>
-              <DonutChart
-                donutData={this.state.donutData}
-              />
-            </Grid.Column>
           </Grid>
         </Container>
       </Aux>
