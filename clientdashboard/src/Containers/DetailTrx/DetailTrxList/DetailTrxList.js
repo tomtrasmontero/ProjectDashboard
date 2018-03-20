@@ -15,7 +15,7 @@ class DetailTrxList extends Component {
   }
 
   getSalesData = async () => {
-    const url = 'http://localhost:8080/sales/';
+    const url = 'http://localhost:8080/sales/sales';
     const request = await axios.get(url)
       .catch(err => console.log(err, 'error getting data'));
 
@@ -23,7 +23,7 @@ class DetailTrxList extends Component {
   }
 
   deleteTrx = async (id, index) => {
-    const url = `http://localhost:8080/sales/${id}`;
+    const url = `http://localhost:8080/sales/sales/${id}`;
     await axios.delete(url);
     const data = [...this.state.salesData];
     data.splice(index, 1);

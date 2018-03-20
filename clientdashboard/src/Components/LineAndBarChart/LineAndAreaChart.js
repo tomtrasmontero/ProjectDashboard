@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Segment } from 'semantic-ui-react';
-import ReactHighstock from 'react-highcharts';
+import ReactHighstock from 'react-highcharts/ReactHighstock';
 import PropTypes from 'prop-types';
 
 class LineAndBarChart extends Component {

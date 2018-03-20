@@ -16,7 +16,7 @@ class Dashboard extends Component {
     mapsData: [],
     donutData: [],
     salesData: [],
-    baseUrl: 'http://localhost:8080/',
+    baseUrl: 'http://localhost:8080/sales/',
     view: 'All',
   }
 
