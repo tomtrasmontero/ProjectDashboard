@@ -76,6 +76,7 @@ class Dashboard extends Component {
                   <LineAndBarChart
                     lineData={this.state.lineData}
                     areaData={this.state.areaData}
+                    view={this.state.view}
                   />
                 </Segment>
               </Grid.Column>

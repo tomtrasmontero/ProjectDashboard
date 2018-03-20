@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Accordion, Button, Header } from 'semantic-ui-react';
+import { Table, Accordion, Button, Header, Dimmer, Loader } from 'semantic-ui-react';
 import axios from 'axios';
 import Aux from '../../../hoc/Aux/Aux';
 import * as utility from '../../../utilities/transformData';
@@ -14,26 +14,20 @@ class DetailTrxList extends Component {
     this.getSalesData();
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.salesData === this.state.salesData &&
-    nextState.activeIndex === this.state.activeIndex) {
-      return false;
-    }
-    return true;
-  }
-
   getSalesData = async () => {
-    const url = 'http://localhost:8080/sales';
+    const url = 'http://localhost:8080/sales/';
     const request = await axios.get(url)
       .catch(err => console.log(err, 'error getting data'));
 
     this.setState({ salesData: request.data });
   }
 
-  deleteTrx = async (id) => {
+  deleteTrx = async (id, index) => {
     const url = `http://localhost:8080/sales/${id}`;
-    const request = await axios.delete(url);
-    console.log(request, 'file deleted');
+    await axios.delete(url);
+    const data = [...this.state.salesData];
+    data.splice(index, 1);
+    this.setState({ salesData: data, activeIndex: -1 });
   }
 
   showDetail(idx) {
@@ -46,12 +40,18 @@ class DetailTrxList extends Component {
     const { activeIndex } = this.state;
     let tableDetail = (
       <Table.Body>
-        <Table.Row><Table.Cell>Loading...</Table.Cell></Table.Row>
+        <Table.Row>
+          <Table.Cell>
+            <Dimmer active>
+              <Loader>Loading...</Loader>
+            </Dimmer>
+          </Table.Cell>
+        </Table.Row>
       </Table.Body>
     );
 
     if (this.state.salesData.length > 0) {
-      tableDetail = this.state.salesData.map((salesTrx) => {
+      tableDetail = this.state.salesData.map((salesTrx, idx) => {
         const date = new Date(salesTrx.time * 1);
         return (
           <Aux key={salesTrx.id}>
@@ -83,7 +83,7 @@ class DetailTrxList extends Component {
                     <Header textAlign="center">
                       <Button
                         icon="trash"
-                        onClick={() => this.deleteTrx(salesTrx.id)}
+                        onClick={() => this.deleteTrx(salesTrx.id, idx)}
                       />
                     </Header>
                   </Table.HeaderCell>

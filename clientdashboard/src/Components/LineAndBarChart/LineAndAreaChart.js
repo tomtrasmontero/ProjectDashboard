@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Segment } from 'semantic-ui-react';
-import ReactHighstock from 'react-highcharts/ReactHighstock';
+import ReactHighstock from 'react-highcharts';
 import PropTypes from 'prop-types';
 
 class LineAndBarChart extends Component {
@@ -8,17 +8,9 @@ class LineAndBarChart extends Component {
     this.chart.Highcharts.setOptions({ lang: { thousandsSep: ',' } });
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.areaData !== this.props.areaData &&
-    nextProps.lineData.length > 0) {
-      console.log('updated');
-      this.chart.chart.series[0].redraw();
-    }
-  }
-
   shouldComponentUpdate(nextProps) {
     let check = false;
-    if (nextProps.lineData === this.props.lineData) {
+    if (nextProps.lineData !== this.props.lineData) {
       check = true;
     } else if (nextProps.areaData !== this.props.areaData) {
       check = true;
@@ -27,7 +19,13 @@ class LineAndBarChart extends Component {
     return check;
   }
 
-  render() {
+  componentDidUpdate() {
+    // this.chart.chart.series[0].destroy();
+    this.chart.chart.series[0].setData(this.props.lineData, true, true, false);
+    this.chart.chart.series[1].setData(this.props.areaData, true, true, false);
+  }
+
+  createChart() {
     const config = {
       rangeSelector: {
         selected: 1,
@@ -72,7 +70,7 @@ class LineAndBarChart extends Component {
       series: [{
         name: 'Sales',
         type: 'area',
-        data: this.props.lineData,
+        data: [this.props.lineData],
         tooltip: {
           valueDecimals: 0,
         },
@@ -99,11 +97,16 @@ class LineAndBarChart extends Component {
       },
     };
 
-    const chart = <ReactHighstock config={config} ref={(c) => { this.chart = c; }} />;
+    return <ReactHighstock config={config} ref={(c) => { this.chart = c; }} />;
+  }
+
+  render() {
+    const chart = this.createChart();
 
     return (
       <Container as={Segment} id="container" >
         {chart}
+        <button onClick={this.test} />
       </Container>
     );
   }

@@ -28,6 +28,10 @@ class MenuBar extends Component {
           <Menu.Item name="dashboard" active={activeItem === 'dashboard'} onClick={this.handleItemClick} />
           <Menu.Item name="detail" active={activeItem === 'detail'} onClick={this.handleItemClick} />
           <Menu.Item name="summary" active={activeItem === 'summary'} onClick={this.handleItemClick} />
+          <Menu.Menu position="right">
+            <Menu.Item name="login" active={activeItem === 'login'} onClick={this.handleItemClick} />
+            <Menu.Item name="help" active={activeItem === 'help'} onClick={this.handleItemClick} />
+          </Menu.Menu>
         </Menu>
       </Segment>
     );
