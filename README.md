@@ -3,7 +3,7 @@ Mock Dashboard - A company dashboard project focused on having a back-end micros
 
 Technologies Used:
 Front End: React, Semantic-UI, High Charts.
-Backend: Java, Spring, Docker, Netflix Zuul. 
+Backend: Java, Spring, Docker, Netflix Zuul, Netflix Eureka. 
 
 ## A clear problem statement from the client
 As an Owner, I want to be able to see a quick summary in regards to the health of my company and quickly glance kpi's.
